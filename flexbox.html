@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+<meta charset="UTF-8">
+<title>Flexbox vs Standardni Layout – Sve Razlike</title>
+<style>
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+}
+
+h1, h2 {
+    text-align: center;
+}
+
+p {
+    text-align: center;
+}
+
+/* Sekcija sa rasporedom */
+.section {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-bottom: 40px;
+}
+
+.container-wrapper {
+    width: 48%;
+    margin-bottom: 20px;
+}
+
+/* FLEXBOX KONTEJNER */
+.flex-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+    gap: 15px;
+    min-height: 200px;
+    background-color: #e0f7fa;
+    padding: 10px;
+    border: 2px solid #00796b;
+}
+
+.flex-container .item {
+    flex: 1 1 80px; /* grow shrink basis */
+    align-self: auto;
+    background-color: #4dd0e1;
+    padding: 20px;
+    text-align: center;
+    font-weight: bold;
+}
+
+/* NE-FLEX KONTEJNER */
+.no-flex-container {
+    text-align: center;
+    min-height: 200px;
+    background-color: #ffebee;
+    padding: 10px;
+    border: 2px solid #c62828;
+}
+
+.no-flex-container .item {
+    display: inline-block;
+    width: 80px;
+    height: 80px;
+    margin: 10px;
+    vertical-align: middle;
+    background-color: #f06292;
+    padding: 20px;
+    font-weight: bold;
+}
+
+/* Dodatni stilovi za demonstraciju order i align-self */
+.flex-container .item3 {
+    order: 2; /* menja redosled */
+    align-self: flex-end; /* individualno poravnanje */
+}
+
+.flex-container .item4 {
+    flex-grow: 2; /* zauzima više mesta */
+}
+
+/* Stil za kod u vidu teksta */
+pre {
+    background-color: #f4f4f4;
+    border-left: 5px solid #00796b;
+    padding: 10px;
+    margin: 10px 0;
+    white-space: pre-wrap;
+}
+pre.no-flex {
+    border-left-color: #c62828;
+}
+</style>
+</head>
+<body>
+
+<h1>Flexbox vs Standardni Layout – Vizuelno i Kod</h1>
+<p>Promeni veličinu prozora da vidiš razlike u rasporedu, poravnanju i skaliranju elemenata.</p>
+
+<div class="section">
+  <div class="container-wrapper">
+    <h2>Flexbox</h2>
+    <div class="flex-container">
+      <div class="item item1">1</div>
+      <div class="item item2">2</div>
+      <div class="item item3">3</div>
+      <div class="item item4">4</div>
+    </div>
+    <p>Stavka 3 je prikazana poslednja zbog <code>order: 2</code>.</p>
+    <h3>Ključni CSS kod:</h3>
+    <pre>
+.flex-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+  gap: 15px;
+}
+
+.item {
+  flex: 1 1 80px;
+  align-self: auto;
+}
+
+.item3 {
+  order: 2;
+  align-self: flex-end;
+}
+
+.item4 {
+  flex-grow: 2;
+}
+    </pre>
+  </div>
+
+  <div class="container-wrapper">
+    <h2>Bez Flexbox-a</h2>
+    <div class="no-flex-container">
+      <div class="item">1</div>
+      <div class="item">2</div>
+      <div class="item">3</div>
+      <div class="item">4</div>
+    </div>
+    <h3>Ključni CSS kod:</h3>
+    <pre class="no-flex">
+.no-flex-container {
+  text-align: center;
+}
+
+.item {
+  display: inline-block;
+  width: 80px;
+  height: 80px;
+  margin: 10px;
+  vertical-align: middle;
+}
+    </pre>
+  </div>
+</div>
+
+<h2>Objašnjenje glavnih razlika</h2>
+<ul>
+    <li><strong>Raspored:</strong> Flexbox automatski raspoređuje stavke; redosled se može menjati sa <code>order</code>.</li>
+    <li><strong>Vertikalno centriranje:</strong> Flexbox koristi <code>align-items</code> i <code>align-self</code>; standardni CSS koristi <code>vertical-align</code>.</li>
+    <li><strong>Prelazak u novi red:</strong> Flexbox sa <code>flex-wrap</code> automatski prelama stavke; standardni CSS ne.</li>
+    <li><strong>Rast/skupljanje:</strong> Flexbox stavke mogu proporcionalno da rastu/skupljaju; standardni CSS ne.</li>
+    <li><strong>Razmak između stavki:</strong> Flexbox koristi <code>gap</code>; standardni CSS margine.</li>
+</ul>
+
+</body>
+</html>
